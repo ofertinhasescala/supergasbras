@@ -1,0 +1,1661 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+   
+<script>
+  window.pixelId = "6854837e2364cfe63544ca34";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+<script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Supergasbrasbras - Para Casa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    @keyframes pulse-border-green {
+      0%, 100% {
+        box-shadow: 0 0 8px 2px #22c55e;
+      }
+      50% {
+        box-shadow: 0 0 16px 4px #22c55e;
+      }
+    }
+    .pulse-border-green {
+      animation: pulse-border-green 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse-border-green-strong {
+      0%, 100% {
+        box-shadow: 0 0 0 0 #22c55e, 0 0 16px 8px #22c55e33;
+      }
+      50% {
+        box-shadow: 0 0 0 6px #22c55e, 0 0 32px 16px #22c55e55;
+      }
+    }
+    .pulse-border-green-strong {
+      animation: pulse-border-green-strong 1.2s cubic-bezier(0.4,0,0.6,1) infinite;
+    }
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(-16px) scale(1.05);
+      }
+      80% {
+        transform: translateY(8px) scale(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .bounce-in {
+      animation: bounceIn 0.8s cubic-bezier(.68,-0.55,.27,1.55) both;
+    }
+
+    /* Estilos do popup de entrega */
+    .delivery-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .delivery-popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .delivery-popup {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .delivery-popup-overlay.active .delivery-popup {
+      transform: scale(1) translateY(0);
+    }
+
+    .schedule-fields {
+      display: none;
+      animation: fadeInUp 0.4s ease;
+    }
+    
+    .schedule-fields.active {
+      display: block;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .delivery-option {
+      transition: all 0.2s ease;
+    }
+    
+    .delivery-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos do popup inicial removidos */
+
+    /* Estilos modernos para o calendário */
+    .calendar-container {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-bottom: 1rem;
+      transform-origin: top center;
+      animation: calendarAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    @keyframes calendarAppear {
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .calendar-header {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .calendar-month {
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+
+    .calendar-nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .calendar-nav-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 0.5rem;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      transition: background 0.2s;
+    }
+
+    .calendar-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      padding: 0.75rem;
+      gap: 0.5rem;
+    }
+
+    .calendar-day-header {
+      text-align: center;
+      font-weight: 600;
+      color: #666;
+      font-size: 0.8rem;
+      padding: 0.25rem 0;
+      margin-bottom: 0.25rem;
+    }
+
+    .calendar-day {
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    .calendar-day:hover:not(.calendar-day-disabled):not(.calendar-day-selected) {
+      background-color: #f0fdf4;
+      color: #16a34a;
+    }
+
+    .calendar-day-selected {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .calendar-day-disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .calendar-day-today {
+      color: #16a34a;
+      font-weight: bold;
+    }
+    
+    .calendar-day-today::after {
+      content: '';
+      position: absolute;
+      bottom: 3px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: #16a34a;
+    }
+
+    .calendar-actions {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem 1rem;
+    }
+
+    .calendar-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .calendar-btn-clear {
+      color: #666;
+      background: #f0f0f0;
+    }
+
+    .calendar-btn-clear:hover {
+      background: #e0e0e0;
+    }
+
+    .calendar-btn-today {
+      color: white;
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    }
+
+    .calendar-btn-today:hover {
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* Estilos para o seletor de horário */
+    .time-select-container {
+      position: relative;
+    }
+
+    .time-select {
+      appearance: none;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      padding-right: 2rem;
+      width: 100%;
+      font-size: 1rem;
+      color: #333;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2316a34a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1rem;
+    }
+
+    .time-select:focus {
+      outline: none;
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    }
+    
+    /* Estilos para o ícone do calendário */
+    .date-input-container {
+      position: relative;
+    }
+
+    .date-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      color: #333;
+      background: white;
+    }
+
+    .date-input:focus {
+      outline: none;
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    }
+
+    .date-icon {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #16a34a;
+      pointer-events: none;
+    }
+
+    /* Responsividade para o vídeo VERTICAL */
+    #video-player-container {
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    #video-player-container video {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      border-radius: 1rem;
+      background: #000;
+      object-fit: contain;
+    }
+    @media (max-width: 640px) {
+      #video-player-container {
+        max-width: 100vw;
+        padding: 0 0.5rem;
+      }
+      #video-player-container .relative {
+        padding-top: 177.78%;
+      }
+    }
+    
+    /* WhatsApp e Instagram Button Styles removidos */
+    
+    /* Media queries para botões flutuantes removidas */
+
+    /* Estilos do popup do Clube Supergasbras */
+    .prize-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 10003;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+    }
+    
+    .prize-popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .prize-popup {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transform: scale(0.8) translateY(50px);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-align: center;
+    }
+    
+    .prize-popup-overlay.active .prize-popup {
+      transform: scale(1) translateY(0);
+    }
+    
+    .cpf-input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .cpf-input:focus {
+      outline: none;
+      border-color: #22c55e;
+    }
+    
+    .quiz-question {
+      display: none;
+      animation: fadeInUp 0.5s ease;
+    }
+    
+    .quiz-question.active {
+      display: block;
+    }
+    
+    .quiz-option {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+    
+    .quiz-option:hover {
+      border-color: #22c55e;
+      background-color: #f0fdf4;
+    }
+    
+    .quiz-option.selected {
+      border-color: #22c55e;
+      background-color: #dcfce7;
+    }
+    
+    /* Botão de verificar disponibilidade */
+    .verify-availability-btn {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      color: white;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 8px 25px -8px rgba(34, 197, 94, 0.4);
+      transition: all 0.3s ease;
+      display: block;
+      margin: 20px auto;
+      animation: pulse-border-green-strong 2s infinite;
+    }
+    
+    .verify-availability-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px -8px rgba(34, 197, 94, 0.6);
+    }
+    
+    /* Produtos desabilitados */
+    .offers-disabled {
+      filter: grayscale(100%);
+      opacity: 0.6;
+      pointer-events: none;
+      position: relative;
+    }
+    
+    .offers-disabled::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(128, 128, 128, 0.3);
+      z-index: 1;
+      border-radius: 12px;
+    }
+    
+    .offers-disabled .offer-btn {
+      background: #9ca3af !important;
+      cursor: not-allowed !important;
+    }
+    
+    /* Animação de ativação */
+    .offers-activating {
+      animation: activateOffers 1s ease-out forwards;
+    }
+    
+    @keyframes activateOffers {
+      0% {
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transform: scale(0.95);
+      }
+      50% {
+        transform: scale(1.02);
+      }
+      100% {
+        filter: grayscale(0%);
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Estilos do popup do WhatsApp removidos */
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.14.0/dist/lozad.min.js"></script>
+</head>
+<body class="bg-white text-gray-800">
+  <!-- Popup inicial removido -->
+  <!-- 
+    Sound Effect by Universfield from Pixabay
+    https://pixabay.com/pt/users/universfield-28281460/
+    https://pixabay.com/sound-effects/correct-choice-43861/
+  -->
+  <audio id="popup-sound" src="media/1111.mp3" preload="auto"></audio>
+  <audio id="quiz-sound" src="media/1111.mp3" preload="auto"></audio>
+  <!-- Header -->
+<header class="bg-white shadow sticky top-0 z-50">
+    <nav class="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between border-b border-gray-200">
+      <div class="flex items-center justify-center flex-1">
+        <img src="images/supergasbras-logo.svg" alt="Supergasbras" class="h-10 w-auto" width="40" height="40">
+      </div>
+    </nav>
+  </header>
+  <!-- Offers Section -->
+  <section class="offers-section bg-[#c2410c] py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <!-- Vídeo estilo VTurb -->
+      <div class="flex justify-center mb-8">
+        <div id="video-player-container" class="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
+          <!-- Player de vídeo responsivo VERTICAL -->
+          <div class="relative w-full" style="padding-top:177.78%;">
+            <video id="video-vturb" src="media/0702.mp4" poster="/thumb.jpg" class="absolute top-0 left-0 w-full h-full rounded-xl bg-black object-contain" playsinline="" webkit-playsinline="" preload="auto" autoplay=""></video>
+
+            <!-- Controles personalizados -->
+            <div class="absolute bottom-2 left-2 flex gap-2 z-10">
+              <button id="play-pause-button" class="bg-white/80 rounded-full p-2 shadow hover:bg-white">
+                <i id="play-pause-icon" class="fas fa-play"></i>
+              </button>
+              <button id="mute-button" class="bg-white/80 rounded-full p-2 shadow hover:bg-white">
+                <i id="mute-icon" class="fas fa-volume-up"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Botão Verificar Disponibilidade -->
+      <div class="text-center mb-8">
+        <button id="verify-availability-btn" class="verify-availability-btn">
+          🔍 VERIFICAR DISPONIBILIDADE
+        </button>
+      </div>
+      
+      <!-- Ofertas (inicialmente desabilitadas) -->
+      <div id="offers-container" class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto offers-disabled">
+        <!-- Oferta 1 -->
+        <div class="offer-card bg-white rounded-xl shadow-lg p-6 relative animate-[offer-pulse_2.2s_infinite] hover:shadow-xl hover:-translate-y-1 transition-transform transition-shadow flex flex-col">
+          <div class="bg-gradient-to-br from-green-700 to-green-500 text-white text-sm font-semibold py-2 px-4 rounded-lg flex justify-center items-center gap-4 mb-4 text-center" id="location-promo-1" style="justify-content: center;">
+            <span id="promo-city-1" class="w-full text-center block">Localizamos duas unidades perto de você em ...</span>
+          </div>
+          <div class="flex justify-center mb-2">
+            <div class="offer-badge bg-red-600 text-white rounded-full px-6 py-2 text-base font-semibold z-10" style="position:relative;">
+              OFERTA BÁSICA
+            </div>
+          </div>
+          <div class="offer-image flex-1 flex items-stretch justify-stretch w-full h-full p-0 m-0" style="min-height:0;">
+            <img src="umbotijao123" alt="1 Botijão P13" class="w-full h-full object-contain rounded-lg" style="display:block;max-width:100%;max-height:100%;">
+          </div>
+          <div class="offer-content text-center">
+            <div class="offer-label uppercase text-red-600 font-semibold mb-2">1 Botijão P13</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Botijão Individual</h3>
+            <p class="text-gray-600 mb-5">Perfeito para uso doméstico básico. Botijão de 13kg com a qualidade e segurança Supergasbras que você já conhece.</p>
+            <div class="offer-price flex items-center gap-4 mb-5">
+              <span class="old-price line-through text-gray-400 text-lg">R$ 97,00</span>
+              <span class="new-price text-red-600 font-bold text-2xl">R$ 69,00</span>
+            </div>
+            <div class="offer-features mb-6">
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Entrega rápida</div>
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Botijão dourado original</div>
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Segurança garantida</div>
+            </div>
+            <button onclick="openDeliveryPopup('https://checkout.vendeagora.com/api/public/shopify?product=690292323691&store=6902')" class="offer-btn block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg text-center transition-colors">
+              Comprar 1 Botijão
+            </button>
+          </div>
+        </div>
+
+        <!-- Oferta 2 -->
+        <div class="offer-card bg-white rounded-xl shadow-lg p-6 relative animate-[offer-pulse_2.2s_infinite] hover:shadow-xl hover:-translate-y-1 transition-transform transition-shadow flex flex-col min-h-[600px] md:min-h-[560px]">
+          <div class="bg-gradient-to-br from-green-700 to-green-500 text-white text-sm font-semibold py-2 px-4 rounded-lg flex justify-center items-center gap-4 mb-4 text-center" id="location-promo-2" style="justify-content: center;">
+            <span id="promo-city-2" class="w-full text-center block">Localizamos duas unidades perto de você em ...</span>
+          </div>
+          <div class="flex justify-center mb-2">
+            <div class="offer-badge bg-red-600 text-white rounded-full px-6 py-2 text-base font-semibold z-10" style="position:relative;">
+              ECONOMIA R$ 65,00
+            </div>
+          </div>
+          <div class="offer-image flex-1 flex items-center justify-center w-full h-full p-0 m-0 min-h-[260px]">
+            <img src="doisbotijoes123" alt="2 Botijões P13" class="w-full h-full object-contain rounded-lg" style="display:block;max-width:100%;max-height:100%;">
+          </div>
+          <div class="offer-content text-center">
+            <div class="offer-label uppercase text-red-600 font-semibold mb-2">2 Botijões P13</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Dupla Econômica</h3>
+            <p class="text-gray-600 mb-5">Ideal para famílias que consomem mais gás. Compre 2 botijões e economize R$ 65,00 no total da compra!</p>
+            <div class="offer-price flex items-center gap-4 mb-5">
+              <span class="old-price line-through text-gray-400 text-lg">R$ 194,00</span>
+              <span class="new-price text-red-600 font-bold text-2xl">R$ 129,00</span>
+            </div>
+            <div class="offer-features mb-6">
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Entrega programada</div>
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Economia de R$ 65,00</div>
+              <div class="feature text-green-600 flex items-center gap-2">✓ Estoque garantido</div>
+            </div>
+            <button onclick="openDeliveryPopup('https://checkout.vendeagora.com/api/public/shopify?product=690265471712&store=6902')" class="offer-btn block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg text-center transition-colors">
+              Comprar 2 Botijões
+</button>
+
+          </div>
+        </div>
+
+        <!-- Oferta 3 -->
+        <div class="offer-card featured pulse-border-green-strong bg-white rounded-xl shadow-lg p-6 relative border-4 border-green-500 scale-105 hover:shadow-xl hover:-translate-y-1 transition-transform transition-shadow flex flex-col min-h-[600px] md:min-h-[560px]">
+          <div class="bg-gradient-to-br from-green-700 to-green-500 text-white text-sm font-semibold py-2 px-4 rounded-lg flex justify-center items-center gap-4 mb-4 text-center" id="location-promo-3" style="justify-content: center;">
+            <span id="promo-city-3" class="w-full text-center block">Localizamos duas unidades perto de você em ...</span>
+          </div>
+          <div class="flex justify-center mb-2">
+            <div class="offer-badge bg-green-600 text-white rounded-full px-6 py-2 text-base font-semibold z-10" style="position:relative;">
+              MELHOR OFERTA
+            </div>
+          </div>
+          <div class="offer-image flex-1 flex items-center justify-center w-full h-full p-0 m-0 min-h-[260px]">
+            <img src="tresbotijoes123" alt="3 Botijões P13" class="w-full h-full object-contain rounded-lg" style="display:block;max-width:100%;max-height:100%;">
+          </div>
+          <div class="offer-content text-center">
+            <div class="offer-label uppercase text-green-600 font-semibold mb-2">3 Botijões P13</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Trio Super Econômico</h3>
+            <p class="text-gray-600 mb-5">A melhor oferta! Compre 3 botijões e tenha o menor preço por unidade. Economia total de R$ 18,00!</p>
+            <div class="offer-price flex items-center gap-4 mb-5">
+              <span class="old-price line-through text-gray-400 text-lg">R$ 291,00</span>
+              <span class="new-price text-green-600 font-bold text-2xl">R$ 197,00</span>
+            </div>
+            <div class="offer-features mb-6">
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Maior economia - R$ 94,00</div>
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Entrega gratuita</div>
+              <div class="feature text-green-600 flex items-center gap-2">✓ Estoque para 3 meses</div>
+            </div>
+            <button onclick="openDeliveryPopup('https://checkout.vendeagora.com/api/public/shopify?product=690267679867&store=6902')" class="offer-btn block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg text-center transition-colors">Comprar 3 Botijões</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="app-section bg-orange-700 text-white py-20 text-center">
+    <div class="w-full flex flex-col items-center mb-5 select-none" style="overflow:hidden;">
+      <img src="images/clonanaocarai.png" alt="Ofertas Especiais" style="display:block;max-width:100%;max-height:100%;border-radius:1rem;margin-bottom:2rem;">
+      <img src="images/xyzentregador.png" alt="Entregador Supergasbras" style="width:100%; height:auto; max-width:100vw; max-height:60vh; object-fit:cover; display:block; margin:0 auto; border-radius:2rem;">
+    </div>
+    <div class="max-w-7xl mx-auto px-5">
+      <h2 class="text-4xl font-extrabold mb-5">ACABOU O GÁS?</h2>
+      <p class="text-xl mb-10">Peça seu botijão pelo App da Supergasbras! Rápido e prático!</p>
+    </div>
+  </section>
+
+  <!-- Popup de entrega -->
+  <div id="delivery-popup-overlay" class="delivery-popup-overlay">
+    <div class="delivery-popup">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-bold text-gray-900">Escolha sua entrega</h3>
+        <button onclick="closeDeliveryPopup()" class="text-gray-400 hover:text-gray-600 text-2xl">�</button>
+      </div>
+      
+      <div class="space-y-4 mb-6">
+        <div class="delivery-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer hover:border-green-500" onclick="selectDeliveryOption('immediate')">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-semibold text-gray-900">Entrega Imediata</h4>
+              <p class="text-gray-600 text-sm">Receba em até 2 horas</p>
+            </div>
+            <div class="text-green-600 font-bold">GRÁTIS</div>
+          </div>
+        </div>
+        
+        <div class="delivery-option border-2 border-green-500 bg-green-50 rounded-lg p-4 cursor-pointer" onclick="selectDeliveryOption('scheduled')">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-semibold text-gray-900">Entrega Agendada</h4>
+              <p class="text-gray-600 text-sm">Escolha data e horário</p>
+            </div>
+            <div class="text-green-600 font-bold">GRÁTIS</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="schedule-fields" class="schedule-fields active">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Data da Entrega</label>
+            <div class="date-input-container">
+              <input type="text" id="date-display" readonly class="date-input" placeholder="Selecione uma data">
+              <svg class="date-icon w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <input type="hidden" id="selected-date">
+            <div id="calendar-container" class="calendar-container mt-2" style="display: none;">
+              <div class="calendar-header">
+                <div class="calendar-month" id="calendar-month">Julho 2025</div>
+                <div class="calendar-nav">
+                  <button class="calendar-nav-btn" id="prev-month">&lt;</button>
+                  <button class="calendar-nav-btn" id="next-month">&gt;</button>
+                </div>
+              </div>
+              <div class="calendar-days" id="calendar-days">
+                <!-- Dias serão preenchidos pelo JavaScript -->
+              </div>
+              <div class="calendar-actions">
+                <button class="calendar-btn calendar-btn-clear" id="clear-date">Limpar</button>
+                <button class="calendar-btn calendar-btn-today" id="today-date">Hoje</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Horário da Entrega</label>
+            <div class="time-select-container">
+              <select id="time-select" class="time-select">
+                <option value="08:00 - 12:00">08:00 - 12:00</option>
+                <option value="12:00 - 16:00">12:00 - 16:00</option>
+                <option value="16:00 - 20:00">16:00 - 20:00</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button id="continue-payment-btn" onclick="continueToPayment()" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-colors">
+        Continuar para Pagamento
+      </button>
+    </div>
+  </div>
+
+  <!-- NOVO: Popup de CEP -->
+  <div id="cep-popup-overlay" class="delivery-popup-overlay" style="z-index:10002;">
+    <div class="delivery-popup" style="max-width:400px;">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-gray-900">Informe seu CEP</h3>
+        <button onclick="closeCepPopup()" class="text-gray-400 hover:text-gray-600 text-2xl">�</button>
+      </div>
+      <div class="mb-4">
+        <input id="cep-input" type="text" maxlength="9" placeholder="Digite seu CEP" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-transparent">
+      </div>
+      <button id="consultar-cep-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition-colors mb-3">Consultar</button>
+      <div id="cep-message" class="text-gray-700 text-center mb-2" style="min-height:2em;"></div>
+      <button id="prosseguir-pagamento-btn" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 rounded-lg transition-colors" style="display:none;">Prosseguir para Pagamento</button>
+    </div>
+  </div>
+
+  <!-- Popup do Clube Supergasbras -->
+  <div id="prize-popup-overlay" class="prize-popup-overlay">
+    <div class="prize-popup">
+      <div id="cpf-verification" class="cpf-verification">
+        <div class="text-center mb-6">
+          <div class="text-4xl mb-4">🏆</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Entre para o Clube Supergasbras!</h3>
+          <p class="text-gray-600">Digite seu CPF para acessar descontos exclusivos</p>
+        </div>
+        
+        <div class="mb-4">
+          <input id="cpf-input" type="text" class="cpf-input" placeholder="Digite seu CPF (000.000.000-00)" maxlength="14">
+        </div>
+        
+        <button id="verify-cpf-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-colors mb-3">
+          Acessar Clube de Descontos
+        </button>
+        
+        <div id="cpf-loading" class="text-center text-gray-600" style="display:none;">
+          <div class="spinner inline-block w-6 h-6 border-2 border-gray-300 border-t-green-600 rounded-full animate-spin mr-2"></div>
+          Verificando...
+        </div>
+        
+        <button onclick="closePrizePopup()" class="w-full bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 rounded-lg transition-colors text-sm">
+          Fechar
+        </button>
+      </div>
+      
+      <!-- Congratulations Message -->
+      <div id="congratulations" style="display:none;">
+        <div class="text-center mb-6">
+          <div class="text-4xl mb-4">🎉</div>
+          <h3 class="text-2xl font-bold text-green-600 mb-2">Bem-vindo(a) ao Clube, <span id="user-name"></span>!</h3>
+          <p class="text-gray-700">Você agora tem acesso a preços especiais e descontos exclusivos do Clube Supergasbras!</p>
+        </div>
+        
+        <button id="start-quiz-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-colors">
+          Continuar
+        </button>
+      </div>
+      
+      <!-- Quiz Questions -->
+      <div id="quiz-container" style="display:none;">
+        <!-- Question 1 -->
+        <div id="quiz-q1" class="quiz-question active">
+          <h4 class="text-lg font-bold mb-4">1. Com que frequência você troca o botijão de gás em casa?</h4>
+          <button class="quiz-option" data-question="1" data-answer="monthly">🔄 Todo mês</button>
+          <button class="quiz-option" data-question="1" data-answer="bimonthly">📅 A cada 2 meses</button>
+          <button class="quiz-option" data-question="1" data-answer="quarterly">🗓️ A cada 3 meses ou mais</button>
+          <button class="quiz-option" data-question="1" data-answer="varies">📊 Varia conforme o consumo</button>
+        </div>
+        
+        <!-- Question 2 -->
+        <div id="quiz-q2" class="quiz-question">
+          <h4 class="text-lg font-bold mb-4">2. O que mais importa para você ao comprar gás?</h4>
+          <button class="quiz-option" data-question="2" data-answer="price">💰 Economia e bom preço</button>
+          <button class="quiz-option" data-question="2" data-answer="safety">🛡️ Segurança e qualidade</button>
+          <button class="quiz-option" data-question="2" data-answer="delivery">🚚 Rapidez na entrega</button>
+          <button class="quiz-option" data-question="2" data-answer="convenience">🏠 Praticidade e comodidade</button>
+        </div>
+        
+        <!-- Question 3 -->
+        <div id="quiz-q3" class="quiz-question">
+          <h4 class="text-lg font-bold mb-4">3. Você já passou pela situação de acabar o gás na hora de cozinhar?</h4>
+          <button class="quiz-option" data-question="3" data-answer="often">😫 Sim, várias vezes</button>
+          <button class="quiz-option" data-question="3" data-answer="sometimes">😅 Sim, algumas vezes</button>
+          <button class="quiz-option" data-question="3" data-answer="rarely">😎 Raramente, sou prevenido(a)</button>
+          <button class="quiz-option" data-question="3" data-answer="never">🏆 Nunca aconteceu comigo</button>
+        </div>
+        
+        <!-- Question 4 -->
+        <div id="quiz-q4" class="quiz-question">
+          <h4 class="text-lg font-bold mb-4">4. Qual dos benefícios do Clube Supergasbras mais lhe interessa?</h4>
+          <button class="quiz-option" data-question="4" data-answer="savings">💸 Economia garantida em cada botijão</button>
+          <button class="quiz-option" data-question="4" data-answer="priority">⏱️ Prioridade nas entregas</button>
+          <button class="quiz-option" data-question="4" data-answer="bulk">📦 Desconto na compra de múltiplos botijões</button>
+          <button class="quiz-option" data-question="4" data-answer="all">🌟 Todos os benefícios acima</button>
+        </div>
+        
+        <!-- Final Message -->
+        <div id="quiz-final" class="quiz-question">
+          <div class="text-center">
+            <div class="text-4xl mb-4">✅</div>
+            <h4 class="text-xl font-bold text-green-600 mb-4">Perfeito! Você é ideal para o Clube Supergasbras!</h4>
+            <p class="text-gray-700 mb-6">Identificamos que você valoriza economia e praticidade! Como membro do clube, você terá acesso a botijões com preços reduzidos, entrega prioritária e descontos especiais em compras múltiplas!</p>
+            
+            <button id="claim-offer-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-colors pulse-border-green-strong">
+              🎯 ACESSAR PREÇOS DE CLUBE AGORA
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/videoplayer.js"></script>
+  <script>
+    let currentPaymentUrl = '';
+    let selectedDeliveryType = 'scheduled';
+    let prizePopupTimeout;
+    let currentQuizQuestion = 1;
+    let userName = '';
+    let productsUnlocked = false; // Nova variável para controlar se os produtos estão liberados
+
+    // Popup inicial removido
+    // Iniciar fluxo automaticamente após 3 segundos
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        // Iniciar o fluxo automático após 3 segundos de página carregada
+        closeInitialPopup();
+      }, 3000);
+    });
+
+    // Função para iniciar o fluxo de conversão (popup inicial removido)
+    function closeInitialPopup() {
+      // Iniciar timer para mostrar popup do Clube após 15 segundos
+      prizePopupTimeout = setTimeout(() => {
+        showPrizePopup();
+      }, 15000);
+    }
+
+    // Event listener para o botão removido
+
+    // Função para mostrar popup do Clube Supergasbras
+    function showPrizePopup() {
+      document.getElementById('prize-popup-overlay').classList.add('active');
+    }
+
+    // Função para fechar popup do Clube
+    function closePrizePopup() {
+      document.getElementById('prize-popup-overlay').classList.remove('active');
+    }
+
+    // Máscara para CPF
+    document.getElementById('cpf-input').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      value = value.replace(/(\d{3})(\d)/, '$1.$2');
+      value = value.replace(/(\d{3})(\d)/, '$1.$2');
+      value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+      e.target.value = value;
+    });
+
+    // Verificar CPF na API
+    document.getElementById('verify-cpf-btn').addEventListener('click', function() {
+      const cpfInput = document.getElementById('cpf-input');
+      const cpf = cpfInput.value.replace(/\D/g, '');
+      
+      if (cpf.length !== 11) {
+        alert('Por favor, digite um CPF válido.');
+        return;
+      }
+      
+      const loadingDiv = document.getElementById('cpf-loading');
+      const verifyBtn = document.getElementById('verify-cpf-btn');
+      
+      // Mostrar loading
+      loadingDiv.style.display = 'block';
+      verifyBtn.style.display = 'none';
+      
+      // Chamar API
+      fetch(`https://apela-api.tech/?user=c0905e9b-17af-452c-b48b-97a304b65baf&cpf=${cpf}`)
+        .then(response => response.json())
+        .then(data => {
+          loadingDiv.style.display = 'none';
+          
+          if (data.status === 200 && data.nome) {
+            userName = data.nome.split(' ')[0]; // Pegar primeiro nome
+            document.getElementById('user-name').textContent = userName;
+            
+            // Esconder verificação CPF e mostrar parabéns
+            document.getElementById('cpf-verification').style.display = 'none';
+            document.getElementById('congratulations').style.display = 'block';
+          } else {
+            verifyBtn.style.display = 'block';
+            alert('CPF não encontrado ou erro na consulta. Tente novamente.');
+          }
+        })
+        .catch(error => {
+          loadingDiv.style.display = 'none';
+          verifyBtn.style.display = 'block';
+          console.error('Erro na API:', error);
+          alert('Erro ao verificar CPF. Tente novamente.');
+        });
+    });
+
+    // Iniciar quiz
+    document.getElementById('start-quiz-btn').addEventListener('click', function() {
+      document.getElementById('congratulations').style.display = 'none';
+      document.getElementById('quiz-container').style.display = 'block';
+      
+      // Tocar som ao iniciar o quiz
+      const quizSound = document.getElementById('quiz-sound');
+      if (quizSound) {
+        quizSound.currentTime = 0;
+        quizSound.play().catch(e => console.log('Erro ao reproduzir som inicial do quiz:', e));
+      }
+    });
+
+    // Gerenciar respostas do quiz
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('quiz-option')) {
+        // Play sound when answering quiz questions
+        const quizSound = document.getElementById('quiz-sound');
+        if (quizSound) {
+          // Reiniciar o som para poder tocar novamente
+          quizSound.currentTime = 0;
+          quizSound.play().catch(e => console.log('Erro ao reproduzir som:', e));
+        }
+        
+        const question = e.target.getAttribute('data-question');
+        const currentQ = document.getElementById(`quiz-q${question}`);
+        
+        // Remover seleção anterior
+        currentQ.querySelectorAll('.quiz-option').forEach(opt => {
+          opt.classList.remove('selected');
+        });
+        
+        // Selecionar atual
+        e.target.classList.add('selected');
+        
+        // Avançar para próxima pergunta após 1 segundo
+        setTimeout(() => {
+          if (currentQuizQuestion < 4) {
+            document.getElementById(`quiz-q${currentQuizQuestion}`).classList.remove('active');
+            currentQuizQuestion++;
+            document.getElementById(`quiz-q${currentQuizQuestion}`).classList.add('active');
+            
+            // Tocar som novamente ao mostrar nova pergunta
+            if (quizSound) {
+              quizSound.currentTime = 0;
+              quizSound.play().catch(e => console.log('Erro ao reproduzir som na transição:', e));
+            }
+          } else {
+            // Mostrar mensagem final
+            document.getElementById(`quiz-q${currentQuizQuestion}`).classList.remove('active');
+            document.getElementById('quiz-final').classList.add('active');
+            
+            // Tocar som para mensagem final
+            if (quizSound) {
+              quizSound.currentTime = 0;
+              quizSound.play().catch(e => console.log('Erro ao reproduzir som final:', e));
+            }
+          }
+        }, 1000);
+      }
+    });
+
+    // Botão final - redirecionar para ofertas
+    document.getElementById('claim-offer-btn').addEventListener('click', function() {
+      closePrizePopup();
+      
+      // Marcar produtos como desbloqueados
+      productsUnlocked = true;
+      
+      // Remover estado desabilitado e adicionar animação
+      const offersContainer = document.getElementById('offers-container');
+      offersContainer.classList.remove('offers-disabled');
+      offersContainer.classList.add('offers-activating');
+      
+      // Scroll para as ofertas
+      document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+      
+      // Remover classe de animação após completar
+      setTimeout(() => {
+        offersContainer.classList.remove('offers-activating');
+      }, 1000);
+    });
+
+    function closeDeliveryPopup() {
+      document.getElementById('delivery-popup-overlay').classList.remove('active');
+    }
+
+    function closeCepPopup() {
+      document.getElementById('cep-popup-overlay').classList.remove('active');
+      pendingPaymentUrl = '';
+    }
+
+    // Consulta CEP
+    document.getElementById('consultar-cep-btn').addEventListener('click', function() {
+      const cep = document.getElementById('cep-input').value.replace(/\D/g, '');
+      const msgDiv = document.getElementById('cep-message');
+      msgDiv.textContent = '';
+      document.getElementById('prosseguir-pagamento-btn').style.display = 'none';
+      if (!cep || cep.length !== 8) {
+        msgDiv.textContent = 'Digite um CEP válido (8 dígitos).';
+        return;
+      }
+      msgDiv.textContent = 'Consultando...';
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(r => r.json())
+        .then(data => {
+          if (data.erro) {
+            msgDiv.textContent = 'CEP não encontrado.';
+            return;
+          }
+          const bairro = data.bairro || 'seu bairro';
+          msgDiv.textContent = `Estamos a 5 km de distância do seu bairro ${bairro}, entregamos imediatamente dentro de 30 à 60 minutos após efetuar o pagamento.`;
+          document.getElementById('prosseguir-pagamento-btn').style.display = '';
+          // Guardar bairro se quiser usar depois
+          document.getElementById('prosseguir-pagamento-btn').dataset.bairro = bairro;
+        })
+        .catch(() => {
+          msgDiv.textContent = 'Erro ao consultar o CEP. Tente novamente.';
+        });
+    });
+
+    // Prosseguir para pagamento após consulta do CEP
+    document.getElementById('prosseguir-pagamento-btn').onclick = function() {
+      document.getElementById('cep-popup-overlay').classList.remove('active');
+      document.getElementById('delivery-popup-overlay').classList.add('active');
+      // O botão "Continuar para Pagamento" agora realmente redireciona
+      currentPaymentUrl = pendingPaymentUrl;
+      pendingPaymentUrl = '';
+    };
+
+    function selectDeliveryOption(type) {
+      selectedDeliveryType = type;
+      const scheduleFields = document.getElementById('schedule-fields');
+      const options = document.querySelectorAll('.delivery-option');
+      options.forEach(option => {
+        option.classList.remove('border-green-500', 'bg-green-50');
+        option.classList.add('border-gray-200');
+      });
+      if (type === 'immediate') {
+        options[0].classList.add('border-green-500', 'bg-green-50');
+        options[0].classList.remove('border-gray-200');
+        scheduleFields.classList.remove('active');
+      } else {
+        options[1].classList.add('border-green-500', 'bg-green-50');
+        options[1].classList.remove('border-gray-200');
+        scheduleFields.classList.add('active');
+        
+        // Verificar se já tem uma data selecionada, se não tiver, sugerir data para amanhã
+        const dateInput = document.getElementById('date-display');
+        if (!dateInput.value) {
+          const tomorrow = new Date();
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          const formatter = new Intl.DateTimeFormat('pt-BR');
+          dateInput.value = formatter.format(tomorrow);
+          
+          // Atualizar o input hidden também
+          const hiddenDateInput = document.getElementById('selected-date');
+          const year = tomorrow.getFullYear();
+          const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+          const day = String(tomorrow.getDate()).padStart(2, '0');
+          hiddenDateInput.value = `${year}-${month}-${day}`;
+        }
+      }
+    }
+
+    function continueToPayment() {
+      if (currentPaymentUrl) {
+        // Propagar os parâmetros da URL atual para a URL de pagamento
+        const currentParams = window.location.search;
+        let url = currentPaymentUrl;
+        if (currentParams) {
+          if (url.includes('?')) {
+            url += '&' + currentParams.substring(1);
+          } else {
+            url += currentParams;
+          }
+        }
+        window.open(url, '_blank');
+        closeDeliveryPopup();
+      }
+    }
+
+    // Geolocalização para mostrar cidade
+    fetch('https://get.geojs.io/v1/ip/geo.json')
+      .then(response => response.json())
+      .then(data => {
+        const city = data.city || '';
+        if (city) {
+          document.getElementById('promo-city-1').textContent = `Localizamos duas unidades perto de você em ${city}`;
+          document.getElementById('promo-city-2').textContent = `Localizamos duas unidades perto de você em ${city}`;
+          document.getElementById('promo-city-3').textContent = `Localizamos duas unidades perto de você em ${city}`;
+        } else {
+          document.getElementById('promo-city-1').textContent = 'Localizamos duas unidades perto de você';
+          document.getElementById('promo-city-2').textContent = 'Localizamos duas unidades perto de você';
+          document.getElementById('promo-city-3').textContent = 'Localizamos duas unidades perto de você';
+        }
+        // Substituir {{city}} nos comentários fixos
+        document.querySelectorAll('#fixedComments .comment-box .text').forEach(function(el) {
+          el.innerHTML = el.innerHTML.replace(/\{\{city\}\}/g, city || 'sua cidade');
+        });
+      })
+      .catch(() => {
+        document.getElementById('promo-city-1').textContent = 'Localizamos duas unidades perto de você';
+        document.getElementById('promo-city-2').textContent = 'Localizamos duas unidades perto de você';
+        document.getElementById('promo-city-3').textContent = 'Localizamos duas unidades perto de você';
+        // Substituir {{city}} por "sua cidade" caso não detecte
+        document.querySelectorAll('#fixedComments .comment-box .text').forEach(function(el) {
+          el.innerHTML = el.innerHTML.replace(/\{\{city\}\}/g, 'sua cidade');
+        });
+      });
+    
+          // Verificar disponibilidade - MODIFICADO para abrir popup do Clube Supergasbras
+    document.getElementById('verify-availability-btn').addEventListener('click', function() {
+      const btn = this;
+      
+      // Simular loading
+      btn.innerHTML = '⏳ Verificando...';
+      btn.disabled = true;
+      
+      // Simular busca de disponibilidade
+      setTimeout(() => {
+        btn.innerHTML = '✅ Verificação Completa!';
+        
+        // Esconder botão após 1 segundo e abrir popup do Clube
+        setTimeout(() => {
+          btn.style.display = 'none';
+          showPrizePopup(); // Abrir popup do Clube Supergasbras
+        }, 1000);
+        
+      }, 2000);
+    });
+
+    // Botão final do quiz - MODIFICADO para liberar produtos
+    document.getElementById('claim-offer-btn').addEventListener('click', function() {
+      closePrizePopup();
+      
+      // Tocar som de conclusão
+      const quizSound = document.getElementById('quiz-sound');
+      if (quizSound) {
+        quizSound.currentTime = 0;
+        quizSound.play().catch(e => console.log('Erro ao reproduzir som de conclusão:', e));
+      }
+      
+      // Marcar produtos como desbloqueados
+      productsUnlocked = true;
+      
+      // Remover estado desabilitado e adicionar animação
+      const offersContainer = document.getElementById('offers-container');
+      offersContainer.classList.remove('offers-disabled');
+      offersContainer.classList.add('offers-activating');
+      
+      // Scroll para as ofertas
+      document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+      
+      // Remover classe de animação após completar
+      setTimeout(() => {
+        offersContainer.classList.remove('offers-activating');
+      }, 1000);
+    });
+
+    // MODIFICAR a função openDeliveryPopup para verificar se produtos estão liberados
+    let pendingPaymentUrl = '';
+    function openDeliveryPopup(paymentUrl) {
+      // Verificar se os produtos foram liberados
+      if (!productsUnlocked) {
+        alert('Você precisa completar a verificação antes de fazer um pedido!');
+        return;
+      }
+      
+      currentPaymentUrl = paymentUrl;
+      // Em vez de abrir direto, abrir o popup de CEP
+      pendingPaymentUrl = paymentUrl;
+      document.getElementById('cep-popup-overlay').classList.add('active');
+      document.getElementById('cep-input').value = '';
+      document.getElementById('cep-message').textContent = '';
+      document.getElementById('prosseguir-pagamento-btn').style.display = 'none';
+    }
+
+    // Funções para o popup do WhatsApp removidas
+
+    // Funções para o popup de CEP
+    document.getElementById('consultar-cep-btn').addEventListener('click', function() {
+      const cep = document.getElementById('cep-input').value.replace(/\D/g, '');
+      const msgDiv = document.getElementById('cep-message');
+      const prosseguirBtn = document.getElementById('prosseguir-pagamento-btn');
+      
+      // Validar formato do CEP
+      if (cep.length !== 8) {
+        msgDiv.textContent = 'Por favor, digite um CEP válido.';
+        msgDiv.style.color = 'red';
+        return;
+      }
+      
+      // Simular consulta de CEP
+      msgDiv.textContent = 'Consultando CEP...';
+      msgDiv.style.color = '#666';
+      
+      // Simular atraso de rede
+      setTimeout(() => {
+        msgDiv.textContent = '✅ CEP disponível para entrega!';
+        msgDiv.style.color = 'green';
+        prosseguirBtn.style.display = 'block';
+      }, 1500);
+    });
+    
+    // Função para redirecionar para produtos
+    function redirectToProducts() {
+      // Check if products are unlocked, if not, show prize popup
+      if (!productsUnlocked) {
+        showPrizePopup();
+      } else {
+        // Scroll to products section
+        document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    
+    // WhatsApp Typebot functionality - variáveis mantidas para compatibilidade
+    let currentStep = 0;
+    let userResponses = {};
+    let typingTimeout;
+    
+    // Calendário personalizado
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elementos do calendário
+      const dateInput = document.getElementById('date-display');
+      const calendarContainer = document.getElementById('calendar-container');
+      const calendarDays = document.getElementById('calendar-days');
+      const calendarMonth = document.getElementById('calendar-month');
+      const prevMonthBtn = document.getElementById('prev-month');
+      const nextMonthBtn = document.getElementById('next-month');
+      const clearDateBtn = document.getElementById('clear-date');
+      const todayDateBtn = document.getElementById('today-date');
+      const hiddenDateInput = document.getElementById('selected-date');
+
+      let currentDate = new Date();
+      let selectedDate = null;
+
+      // Formatadores de data
+      const monthFormatter = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric' });
+      const dayFormatter = new Intl.DateTimeFormat('pt-BR', { day: 'numeric' });
+      const fullFormatter = new Intl.DateTimeFormat('pt-BR');
+
+      // Inicializar calendário
+      renderCalendar();
+
+      // Mostrar/esconder calendário ao clicar no input
+      dateInput.addEventListener('click', function() {
+        calendarContainer.style.display = calendarContainer.style.display === 'none' ? 'block' : 'none';
+      });
+
+      // Lidar com cliques fora do calendário
+      document.addEventListener('click', function(e) {
+        if (!dateInput.contains(e.target) && !calendarContainer.contains(e.target)) {
+          calendarContainer.style.display = 'none';
+        }
+      });
+
+      // Navegação do calendário
+      prevMonthBtn.addEventListener('click', function() {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+      });
+
+      nextMonthBtn.addEventListener('click', function() {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+      });
+
+      // Limpar data
+      clearDateBtn.addEventListener('click', function() {
+        selectedDate = null;
+        dateInput.value = '';
+        hiddenDateInput.value = '';
+        renderCalendar();
+        calendarContainer.style.display = 'none';
+      });
+
+      // Selecionar hoje
+      todayDateBtn.addEventListener('click', function() {
+        selectedDate = new Date();
+        dateInput.value = fullFormatter.format(selectedDate);
+        hiddenDateInput.value = formatDateForInput(selectedDate);
+        currentDate = new Date(selectedDate);
+        renderCalendar();
+        calendarContainer.style.display = 'none';
+      });
+
+      // Renderizar o calendário
+      function renderCalendar() {
+        // Atualizar o cabeçalho do mês
+        calendarMonth.textContent = monthFormatter.format(currentDate).replace('.', '');
+
+        // Limpar dias anteriores
+        calendarDays.innerHTML = '';
+
+        // Adicionar cabeçalhos dos dias da semana
+        const weekdays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+        weekdays.forEach(day => {
+          const dayHeader = document.createElement('div');
+          dayHeader.className = 'calendar-day-header';
+          dayHeader.textContent = day;
+          calendarDays.appendChild(dayHeader);
+        });
+
+        // Obter o primeiro dia do mês
+        const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+        const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+        
+        // Dias do mês anterior para preencher a primeira semana
+        const firstDayOfWeek = firstDay.getDay(); // 0 = Domingo, 6 = Sábado
+        const prevMonthLastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+        
+        for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+          const day = prevMonthLastDay - i;
+          const prevMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, day);
+          addDayToCalendar(day, prevMonthDate, true);
+        }
+        
+        // Dias do mês atual
+        const today = new Date();
+        for (let day = 1; day <= lastDay.getDate(); day++) {
+          const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+          const isToday = date.getDate() === today.getDate() && 
+                          date.getMonth() === today.getMonth() && 
+                          date.getFullYear() === today.getFullYear();
+          
+          const isSelected = selectedDate && 
+                             date.getDate() === selectedDate.getDate() && 
+                             date.getMonth() === selectedDate.getMonth() && 
+                             date.getFullYear() === selectedDate.getFullYear();
+          
+          addDayToCalendar(day, date, false, isToday, isSelected);
+        }
+        
+        // Dias do mês seguinte
+        const daysAdded = firstDayOfWeek + lastDay.getDate();
+        const nextMonthDays = Math.ceil(daysAdded / 7) * 7 - daysAdded;
+        
+        for (let day = 1; day <= nextMonthDays; day++) {
+          const nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, day);
+          addDayToCalendar(day, nextMonthDate, true);
+        }
+      }
+
+      // Adicionar um dia ao calendário
+      function addDayToCalendar(day, date, isDisabled, isToday, isSelected) {
+        const dayElement = document.createElement('div');
+        dayElement.textContent = day;
+        dayElement.className = 'calendar-day';
+        
+        if (isDisabled) {
+          dayElement.classList.add('calendar-day-disabled');
+        } else {
+          if (isToday) {
+            dayElement.classList.add('calendar-day-today');
+          }
+          
+          if (isSelected) {
+            dayElement.classList.add('calendar-day-selected');
+          }
+          
+          dayElement.addEventListener('click', function() {
+            selectedDate = new Date(date);
+            dateInput.value = fullFormatter.format(selectedDate);
+            hiddenDateInput.value = formatDateForInput(selectedDate);
+            calendarContainer.style.display = 'none';
+            renderCalendar();
+          });
+        }
+        
+        calendarDays.appendChild(dayElement);
+      }
+
+      // Formatar data para o input hidden (yyyy-mm-dd)
+      function formatDateForInput(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+    });
+  </script>
+  
+  <!-- Comentários estilo Facebook -->
+  <section class="bg-[#f0f2f5] py-12">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-2 justify-center text-center">
+        O que estão dizendo sobre a Supergasbras
+      </h2>
+
+      <!-- Comentários fixos -->
+      <div id="fixedComments">
+        <!-- Comentário 1 -->
+        <div class="comment-box" style="background:#fff;border-radius:8px;padding:10px 15px;box-shadow:0 1px 2px rgba(0,0,0,0.1);width:100%;max-width:500px;display:flex;margin-bottom:20px;">
+          <img class="profile-pic" src="images/p1.png" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;margin-right:10px;object-fit:cover;aspect-ratio:1/1;flex-shrink:0;">
+          <div class="comment-content" style="flex:1;">
+            <span class="username" style="font-weight:bold;color:#365899;margin-bottom:5px;display:block;">Márcia Andrade</span>
+            <div class="text" style="font-size:14px;margin-bottom:5px;">Recebi meu botijão dourado rapidinho! Atendimento excelente e entrega super rápida. Recomendo muito a Supergasbras!</div>
+            <div class="actions" style="font-size:12px;color:#65676b;">
+              <span>Curtir</span>
+              <span>Responder</span>
+              <span>3 min</span>
+            </div>
+            <div class="reactions" style="margin-top:5px;">
+              <svg aria-hidden="true" viewBox="0 0 448 512" width="16" height="16" fill="#1877f2" style="display:inline;vertical-align:middle;">
+                <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48  0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+              </svg>
+              <span style="font-size:12px;color:#65676b;">32</span>
+            </div>
+          </div>
+        </div>
+        <!-- Comentário 2 -->
+        <div class="comment-box" style="background:#fff;border-radius:8px;padding:10px 15px;box-shadow:0 1px 2px rgba(0,0,0,0.1);width:100%;max-width:500px;display:flex;margin-bottom:20px;">
+          <img class="profile-pic" src="images/3ada502c6a469a8d6f65b98fe6c809f9.jpg" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;margin-right:10px;object-fit:cover;aspect-ratio:1/1;flex-shrink:0;">
+          <div class="comment-content" style="flex:1;">
+            <span class="username" style="font-weight:bold;color:#365899;margin-bottom:5px;display:block;">Dona Lourdes</span>
+            <div class="text" style="font-size:14px;margin-bottom:5px;">Aqui em {{city}} sempre chega rápido, nunca mais fiquei sem gás! Obrigada Supergasbras!</div>
+            <div class="actions" style="font-size:12px;color:#65676b;">
+              <span>Curtir</span>
+              <span>Responder</span>
+              <span>7 min</span>
+            </div>
+            <div class="reactions" style="margin-top:5px;">
+              <svg aria-hidden="true" viewBox="0 0 448 512" width="16" height="16" fill="#1877f2" style="display:inline;vertical-align:middle;">
+                <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+              </svg>
+              <span style="font-size:12px;color:#65676b;">18</span>
+            </div>
+          </div>
+        </div>
+        <!-- Comentário 3 -->
+        <div class="comment-box" style="background:#fff;border-radius:8px;padding:10px 15px;box-shadow:0 1px 2px rgba(0,0,0,0.1);width:100%;max-width:500px;display:flex;margin-bottom:20px;">
+          <img class="profile-pic" src="images/7846dd25cd3a87fe9f31a0ade35ad6ff.jpg" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;margin-right:10px;object-fit:cover;aspect-ratio:1/1;flex-shrink:0;">
+          <div class="comment-content" style="flex:1;">
+            <span class="username" style="font-weight:bold;color:#365899;margin-bottom:5px;display:block;">Maria Aparecida</span>
+            <div class="text" style="font-size:14px;margin-bottom:5px;">Preço bom e entrega no mesmo dia aqui em {{city}}. Recomendo!</div>
+            <div class="actions" style="font-size:12px;color:#65676b;">
+              <span>Curtir</span>
+              <span>Responder</span>
+              <span>12 min</span>
+            </div>
+            <div class="reactions" style="margin-top:5px;">
+              <svg aria-hidden="true" viewBox="0 0 448 512" width="16" height="16" fill="#1877f2" style="display:inline;vertical-align:middle;">
+                <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+              </svg>
+              <span style="font-size:12px;color:#65676b;">21</span>
+            </div>
+          </div>
+        </div>
+        <!-- Comentário 4 -->
+        <div class="comment-box" style="background:#fff;border-radius:8px;padding:10px 15px;box-shadow:0 1px 2px rgba(0,0,0,0.1);width:100%;max-width:500px;display:flex;margin-bottom:20px;">
+          <img class="profile-pic" src="images/9c4af73dd8d87fec9e2e8ac0e16c5fd2.jpg" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;margin-right:10px;object-fit:cover;aspect-ratio:1/1;flex-shrink:0;">
+          <div class="comment-content" style="flex:1;">
+            <span class="username" style="font-weight:bold;color:#365899;margin-bottom:5px;display:block;">Helena Souza</span>
+            <div class="text" style="font-size:14px;margin-bottom:5px;">Super prático pedir pelo site, chegou em menos de 2 horas aqui em {{city}}!</div>
+            <div class="actions" style="font-size:12px;color:#65676b;">
+              <span>Curtir</span>
+              <span>Responder</span>
+              <span>18 min</span>
+            </div>
+            <div class="reactions" style="margin-top:5px;">
+              <svg aria-hidden="true" viewBox="0 0 448 512" width="16" height="16" fill="#1877f2" style="display:inline;vertical-align:middle;">
+                <path d="M400 32H48A48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+              </svg>
+              <span style="font-size:12px;color:#65676b;">14</span>
+            </div>
+          </div>
+        </div>
+        <!-- Comentário 5 -->
+        <div class="comment-box" style="background:#fff;border-radius:8px;padding:10px 15px;box-shadow:0 1px 2px rgba(0,0,0,0.1);width:100%;max-width:500px;display:flex;margin-bottom:20px;">
+          <img class="profile-pic" src="images/e2badd9fb873bc112387129e35886bc1.jpg" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;margin-right:10px;object-fit:cover;aspect-ratio:1/1;flex-shrink:0;">
+          <div class="comment-content" style="flex:1;">
+            <span class="username" style="font-weight:bold;color:#365899;margin-bottom:5px;display:block;">Seu Joaquim</span>
+            <div class="text" style="font-size:14px;margin-bottom:5px;">Gostei muito do atendimento, pessoal educado e entrega rápida aqui em {{city}}.</div>
+            <div class="actions" style="font-size:12px;color:#65676b;">
+              <span>Curtir</span>
+              <span>Responder</span>
+              <span>25 min</span>
+            </div>
+            <div class="reactions" style="margin-top:5px;">
+              <svg aria-hidden="true" viewBox="0 0 448 512" width="16" height="16" fill="#1877f2" style="display:inline;vertical-align:middle;">
+                <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+              </svg>
+              <span style="font-size:12px;color:#65676b;">11</span>
+            </div>
+          </div>
+        </div>
+        <!-- Comentário 6 -->
+        <div class="comment-box" style="background:#fff;border-radius:8px;padding:10px 15px;box-shadow:0 1px 2px rgba(0,0,0,0.1);width:100%;max-width:500px;display:flex;margin-bottom:20px;">
+          <img class="profile-pic" src="images/2b2aced4a195ad626cf7828f38e4b6c0.jpg" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;margin-right:10px;object-fit:cover;aspect-ratio:1/1;flex-shrink:0;">
+          <div class="comment-content" style="flex:1;">
+            <span class="username" style="font-weight:bold;color:#365899;margin-bottom:5px;display:block;">Dona Zuleide</span>
+            <div class="text" style="font-size:14px;margin-bottom:5px;">Sempre peço para minha casa em {{city}}, nunca atrasou!</div>
+            <div class="actions" style="font-size:12px;color:#65676b;">
+              <span>Curtir</span>
+              <span>Responder</span>
+              <span>32 min</span>
+            </div>
+            <div class="reactions" style="margin-top:5px;">
+              <svg aria-hidden="true" viewBox="0 0 448 512" width="16" height="16" fill="#1877f2" style="display:inline;vertical-align:middle;">
+                <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+              </svg>
+              <span style="font-size:12px;color:#65676b;">9</span>
+            </div>
+          </div>
+        </div>
+        <!-- Comentário 7 -->
+        <div class="comment-box" style="background:#fff;border-radius:8px;padding:10px 15px;box-shadow:0 1px 2px rgba(0,0,0,0.1);width:100%;max-width:500px;display:flex;margin-bottom:20px;">
+          <img class="profile-pic" src="images/665b3699860356e1f60f6dd8e6288295.jpg" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;margin-right:10px;object-fit:cover;aspect-ratio:1/1;flex-shrink:0;">
+          <div class="comment-content" style="flex:1;">
+            <span class="username" style="font-weight:bold;color:#365899;margin-bottom:5px;display:block;">Clotilde Ramos</span>
+            <div class="text" style="font-size:14px;margin-bottom:5px;">O entregador foi muito educado, adorei o serviço aqui em {{city}}.</div>
+            <div class="actions" style="font-size:12px;color:#65676b;">
+              <span>Curtir</span>
+              <span>Responder</span>
+              <span>40 min</span>
+            </div>
+            <div class="reactions" style="margin-top:5px;">
+              <svg aria-hidden="true" viewBox="0 0 448 512" width="16" height="16" fill="#1877f2" style="display:inline;vertical-align:middle;">
+                <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+              </svg>
+              <span style="font-size:12px;color:#65676b;">7</span>
+            </div>
+          </div>
+        </div>
+        <!-- Comentário 8 -->
+        <div class="comment-box" style="background:#fff;border-radius:8px;padding:10px 15px;box-shadow:0 1px 2px rgba(0,0,0,0.1);width:100%;max-width:500px;display:flex;margin-bottom:20px;">
+          <img class="profile-pic" src="images/f7119047daa95f07688ec71298f9f483.jpg" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;margin-right:10px;object-fit:cover;aspect-ratio:1/1;flex-shrink:0;">
+          <div class="comment-content" style="flex:1;">
+            <span class="username" style="font-weight:bold;color:#365899;margin-bottom:5px;display:block;">Dona Geralda</span>
+            <div class="text" style="font-size:14px;margin-bottom:5px;">Já pedi várias vezes aqui em {{city}}, sempre chega certinho!</div>
+            <div class="actions" style="font-size:12px;color:#65676b;">
+              <span>Curtir</span>
+              <span>Responder</span>
+              <span>1 h</span>
+            </div>
+            <div class="reactions" style="margin-top:5px;">
+              <svg aria-hidden="true" viewBox="0 0 448 512" width="16" height="16" fill="#1877f2" style="display:inline;vertical-align:middle;">
+                <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+              </svg>
+              <span style="font-size:12px;color:#65676b;">6</span>
+            </div>
+          </div>
+        </div>
+        <!-- Comentário 9 -->
+        <div class="comment-box" style="background:#fff;border-radius:8px;padding:10px 15px;box-shadow:0 1px 2px rgba(0,0,0,0.1);width:100%;max-width:500px;display:flex;margin-bottom:20px;">
+          <img class="profile-pic" src="images/dcf203514dc467b011de1388352fdfd9.jpg" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;margin-right:10px;object-fit:cover;aspect-ratio:1/1;flex-shrink:0;">
+          <div class="comment-content" style="flex:1;">
+            <span class="username" style="font-weight:bold;color:#365899;margin-bottom:5px;display:block;">Sr. Benedito</span>
+            <div class="text" style="font-size:14px;margin-bottom:5px;">O preço está ótimo aqui em {{city}}. Vale a pena!</div>
+            <div class="actions" style="font-size:12px;color:#65676b;">
+              <span>Curtir</span>
+              <span>Responder</span>
+              <span>1 h</span>
+            </div>
+            <div class="reactions" style="margin-top:5px;">
+              <svg aria-hidden="true" viewBox="0 0 448 512" width="16" height="16" fill="#1877f2" style="display:inline;vertical-align:middle;">
+                <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+              </svg>
+              <span style="font-size:12px;color:#65676b;">5</span>
+            </div>
+          </div>
+        </div>
+        <!-- Comentário 10 -->
+        <div class="comment-box" style="background:#fff;border-radius:8px;padding:10px 15px;box-shadow:0 1px 2px rgba(0,0,0,0.1);width:100%;max-width:500px;display:flex;margin-bottom:20px;">
+          <img class="profile-pic" src="images/4fba81aa654b931aebd4a6ebaba08700.jpg" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;margin-right:10px;object-fit:cover;aspect-ratio:1/1;flex-shrink:0;">
+          <div class="comment-content" style="flex:1;">
+            <span class="username" style="font-weight:bold;color:#365899;margin-bottom:5px;display:block;">Seu Manoel</span>
+            <div class="text" style="font-size:14px;margin-bottom:5px;">Fiz o pedido pelo celular e chegou rapidinho aqui em {{city}}. Muito bom!</div>
+            <div class="actions" style="font-size:12px;color:#65676b;">
+              <span>Curtir</span>
+              <span>Responder</span>
+              <span>2 h</span>
+            </div>
+            <div class="reactions" style="margin-top:5px;">
+              <svg aria-hidden="true" viewBox="0 0 448 512" width="16" height="16" fill="#1877f2" style="display:inline;vertical-align:middle;">
+                <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+              </svg>
+              <span style="font-size:12px;color:#65676b;">3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div></section>
+
+  <!-- WhatsApp Popup Removido -->
+
+</body></html>
