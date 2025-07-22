@@ -575,15 +575,106 @@
         </div>
       </div>
       
-      <!-- Botão Verificar Disponibilidade -->
-      <div class="text-center mb-8">
-        <button id="verify-availability-btn" class="verify-availability-btn">
-          🔍 VERIFICAR DISPONIBILIDADE
-        </button>
+      <!-- Ofertas -->
+      <div id="offers-container" class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        <!-- Oferta 1 -->
+        <div class="offer-card bg-white rounded-xl shadow-lg p-6 relative animate-[offer-pulse_2.2s_infinite] hover:shadow-xl hover:-translate-y-1 transition-transform transition-shadow flex flex-col">
+          <div class="bg-gradient-to-br from-green-700 to-green-500 text-white text-sm font-semibold py-2 px-4 rounded-lg flex justify-center items-center gap-4 mb-4 text-center" id="location-promo-1" style="justify-content: center;">
+            <span id="promo-city-1" class="w-full text-center block">Localizamos duas unidades perto de você em ...</span>
+          </div>
+          <div class="flex justify-center mb-2">
+            <div class="offer-badge bg-red-600 text-white rounded-full px-6 py-2 text-base font-semibold z-10" style="position:relative;">
+              OFERTA BÁSICA
+            </div>
+          </div>
+          <div class="offer-image flex-1 flex items-stretch justify-stretch w-full h-full p-0 m-0" style="min-height:0;">
+            <img src="umbotijao123" alt="1 Botijão P13" class="w-full h-full object-contain rounded-lg" style="display:block;max-width:100%;max-height:100%;">
+          </div>
+          <div class="offer-content text-center">
+            <div class="offer-label uppercase text-red-600 font-semibold mb-2">1 Botijão P13</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Botijão Individual</h3>
+            <p class="text-gray-600 mb-5">Perfeito para uso doméstico básico. Botijão de 13kg com a qualidade e segurança Supergasbras que você já conhece.</p>
+            <div class="offer-price flex items-center gap-4 mb-5">
+              <span class="old-price line-through text-gray-400 text-lg">R$ 97,00</span>
+              <span class="new-price text-red-600 font-bold text-2xl">R$ 69,00</span>
+            </div>
+            <div class="offer-features mb-6">
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Entrega rápida</div>
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Botijão dourado original</div>
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Segurança garantida</div>
+            </div>
+            <button onclick="openDeliveryPopup('https://checkout.vendeagora.com/api/public/shopify?product=690292323691&store=6902')" class="offer-btn block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg text-center transition-colors">
+              Comprar 1 Botijão
+            </button>
+          </div>
+        </div>
+
+        <!-- Oferta 2 -->
+        <div class="offer-card bg-white rounded-xl shadow-lg p-6 relative animate-[offer-pulse_2.2s_infinite] hover:shadow-xl hover:-translate-y-1 transition-transform transition-shadow flex flex-col min-h-[600px] md:min-h-[560px]">
+          <div class="bg-gradient-to-br from-green-700 to-green-500 text-white text-sm font-semibold py-2 px-4 rounded-lg flex justify-center items-center gap-4 mb-4 text-center" id="location-promo-2" style="justify-content: center;">
+            <span id="promo-city-2" class="w-full text-center block">Localizamos duas unidades perto de você em ...</span>
+          </div>
+          <div class="flex justify-center mb-2">
+            <div class="offer-badge bg-red-600 text-white rounded-full px-6 py-2 text-base font-semibold z-10" style="position:relative;">
+              ECONOMIA R$ 65,00
+            </div>
+          </div>
+          <div class="offer-image flex-1 flex items-center justify-center w-full h-full p-0 m-0 min-h-[260px]">
+            <img src="doisbotijoes123" alt="2 Botijões P13" class="w-full h-full object-contain rounded-lg" style="display:block;max-width:100%;max-height:100%;">
+          </div>
+          <div class="offer-content text-center">
+            <div class="offer-label uppercase text-red-600 font-semibold mb-2">2 Botijões P13</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Dupla Econômica</h3>
+            <p class="text-gray-600 mb-5">Ideal para famílias que consomem mais gás. Compre 2 botijões e economize R$ 65,00 no total da compra!</p>
+            <div class="offer-price flex items-center gap-4 mb-5">
+              <span class="old-price line-through text-gray-400 text-lg">R$ 194,00</span>
+              <span class="new-price text-red-600 font-bold text-2xl">R$ 129,00</span>
+            </div>
+            <div class="offer-features mb-6">
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Entrega programada</div>
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Economia de R$ 65,00</div>
+              <div class="feature text-green-600 flex items-center gap-2">✓ Estoque garantido</div>
+            </div>
+            <button onclick="openDeliveryPopup('https://checkout.vendeagora.com/api/public/shopify?product=690265471712&store=6902')" class="offer-btn block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg text-center transition-colors">
+              Comprar 2 Botijões
+</button>
+
+          </div>
+        </div>
+
+        <!-- Oferta 3 -->
+        <div class="offer-card featured pulse-border-green-strong bg-white rounded-xl shadow-lg p-6 relative border-4 border-green-500 scale-105 hover:shadow-xl hover:-translate-y-1 transition-transform transition-shadow flex flex-col min-h-[600px] md:min-h-[560px]">
+          <div class="bg-gradient-to-br from-green-700 to-green-500 text-white text-sm font-semibold py-2 px-4 rounded-lg flex justify-center items-center gap-4 mb-4 text-center" id="location-promo-3" style="justify-content: center;">
+            <span id="promo-city-3" class="w-full text-center block">Localizamos duas unidades perto de você em ...</span>
+          </div>
+          <div class="flex justify-center mb-2">
+            <div class="offer-badge bg-green-600 text-white rounded-full px-6 py-2 text-base font-semibold z-10" style="position:relative;">
+              MELHOR OFERTA
+            </div>
+          </div>
+          <div class="offer-image flex-1 flex items-center justify-center w-full h-full p-0 m-0 min-h-[260px]">
+            <img src="tresbotijoes123" alt="3 Botijões P13" class="w-full h-full object-contain rounded-lg" style="display:block;max-width:100%;max-height:100%;">
+          </div>
+          <div class="offer-content text-center">
+            <div class="offer-label uppercase text-green-600 font-semibold mb-2">3 Botijões P13</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Trio Super Econômico</h3>
+            <p class="text-gray-600 mb-5">A melhor oferta! Compre 3 botijões e tenha o menor preço por unidade. Economia total de R$ 18,00!</p>
+            <div class="offer-price flex items-center gap-4 mb-5">
+              <span class="old-price line-through text-gray-400 text-lg">R$ 291,00</span>
+              <span class="new-price text-green-600 font-bold text-2xl">R$ 197,00</span>
+            </div>
+            <div class="offer-features mb-6">
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Maior economia - R$ 94,00</div>
+              <div class="feature text-green-600 flex items-center gap-2 mb-2">✓ Entrega gratuita</div>
+              <div class="feature text-green-600 flex items-center gap-2">✓ Estoque para 3 meses</div>
+            </div>
+            <button onclick="openDeliveryPopup('https://checkout.vendeagora.com/api/public/shopify?product=690267679867&store=6902')" class="offer-btn block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg text-center transition-colors">Comprar 3 Botijões</button>
+          </div>
+        </div>
       </div>
       
-      <!-- Ofertas (inicialmente desabilitadas) -->
-      <div id="offers-container" class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto offers-disabled">
+      <!-- Ofertas disponíveis diretamente -->
+      <div id="offers-container" class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
         <!-- Oferta 1 -->
         <div class="offer-card bg-white rounded-xl shadow-lg p-6 relative animate-[offer-pulse_2.2s_infinite] hover:shadow-xl hover:-translate-y-1 transition-transform transition-shadow flex flex-col">
           <div class="bg-gradient-to-br from-green-700 to-green-500 text-white text-sm font-semibold py-2 px-4 rounded-lg flex justify-center items-center gap-4 mb-4 text-center" id="location-promo-1" style="justify-content: center;">
@@ -786,100 +877,7 @@
     </div>
   </div>
 
-  <!-- Popup do Clube Supergasbras -->
-  <div id="prize-popup-overlay" class="prize-popup-overlay">
-    <div class="prize-popup">
-      <div id="cpf-verification" class="cpf-verification">
-        <div class="text-center mb-6">
-          <div class="text-4xl mb-4">🏆</div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-2">Entre para o Clube Supergasbras!</h3>
-          <p class="text-gray-600">Digite seu CPF para acessar descontos exclusivos</p>
-        </div>
-        
-        <div class="mb-4">
-          <input id="cpf-input" type="text" class="cpf-input" placeholder="Digite seu CPF (000.000.000-00)" maxlength="14">
-        </div>
-        
-        <button id="verify-cpf-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-colors mb-3">
-          Acessar Clube de Descontos
-        </button>
-        
-        <div id="cpf-loading" class="text-center text-gray-600" style="display:none;">
-          <div class="spinner inline-block w-6 h-6 border-2 border-gray-300 border-t-green-600 rounded-full animate-spin mr-2"></div>
-          Verificando...
-        </div>
-        
-        <button onclick="closePrizePopup()" class="w-full bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 rounded-lg transition-colors text-sm">
-          Fechar
-        </button>
-      </div>
-      
-      <!-- Congratulations Message -->
-      <div id="congratulations" style="display:none;">
-        <div class="text-center mb-6">
-          <div class="text-4xl mb-4">🎉</div>
-          <h3 class="text-2xl font-bold text-green-600 mb-2">Bem-vindo(a) ao Clube, <span id="user-name"></span>!</h3>
-          <p class="text-gray-700">Você agora tem acesso a preços especiais e descontos exclusivos do Clube Supergasbras!</p>
-        </div>
-        
-        <button id="start-quiz-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-colors">
-          Continuar
-        </button>
-      </div>
-      
-      <!-- Quiz Questions -->
-      <div id="quiz-container" style="display:none;">
-        <!-- Question 1 -->
-        <div id="quiz-q1" class="quiz-question active">
-          <h4 class="text-lg font-bold mb-4">1. Com que frequência você troca o botijão de gás em casa?</h4>
-          <button class="quiz-option" data-question="1" data-answer="monthly">🔄 Todo mês</button>
-          <button class="quiz-option" data-question="1" data-answer="bimonthly">📅 A cada 2 meses</button>
-          <button class="quiz-option" data-question="1" data-answer="quarterly">🗓️ A cada 3 meses ou mais</button>
-          <button class="quiz-option" data-question="1" data-answer="varies">📊 Varia conforme o consumo</button>
-        </div>
-        
-        <!-- Question 2 -->
-        <div id="quiz-q2" class="quiz-question">
-          <h4 class="text-lg font-bold mb-4">2. O que mais importa para você ao comprar gás?</h4>
-          <button class="quiz-option" data-question="2" data-answer="price">💰 Economia e bom preço</button>
-          <button class="quiz-option" data-question="2" data-answer="safety">🛡️ Segurança e qualidade</button>
-          <button class="quiz-option" data-question="2" data-answer="delivery">🚚 Rapidez na entrega</button>
-          <button class="quiz-option" data-question="2" data-answer="convenience">🏠 Praticidade e comodidade</button>
-        </div>
-        
-        <!-- Question 3 -->
-        <div id="quiz-q3" class="quiz-question">
-          <h4 class="text-lg font-bold mb-4">3. Você já passou pela situação de acabar o gás na hora de cozinhar?</h4>
-          <button class="quiz-option" data-question="3" data-answer="often">😫 Sim, várias vezes</button>
-          <button class="quiz-option" data-question="3" data-answer="sometimes">😅 Sim, algumas vezes</button>
-          <button class="quiz-option" data-question="3" data-answer="rarely">😎 Raramente, sou prevenido(a)</button>
-          <button class="quiz-option" data-question="3" data-answer="never">🏆 Nunca aconteceu comigo</button>
-        </div>
-        
-        <!-- Question 4 -->
-        <div id="quiz-q4" class="quiz-question">
-          <h4 class="text-lg font-bold mb-4">4. Qual dos benefícios do Clube Supergasbras mais lhe interessa?</h4>
-          <button class="quiz-option" data-question="4" data-answer="savings">💸 Economia garantida em cada botijão</button>
-          <button class="quiz-option" data-question="4" data-answer="priority">⏱️ Prioridade nas entregas</button>
-          <button class="quiz-option" data-question="4" data-answer="bulk">📦 Desconto na compra de múltiplos botijões</button>
-          <button class="quiz-option" data-question="4" data-answer="all">🌟 Todos os benefícios acima</button>
-        </div>
-        
-        <!-- Final Message -->
-        <div id="quiz-final" class="quiz-question">
-          <div class="text-center">
-            <div class="text-4xl mb-4">✅</div>
-            <h4 class="text-xl font-bold text-green-600 mb-4">Perfeito! Você é ideal para o Clube Supergasbras!</h4>
-            <p class="text-gray-700 mb-6">Identificamos que você valoriza economia e praticidade! Como membro do clube, você terá acesso a botijões com preços reduzidos, entrega prioritária e descontos especiais em compras múltiplas!</p>
-            
-            <button id="claim-offer-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-colors pulse-border-green-strong">
-              🎯 ACESSAR PREÇOS DE CLUBE AGORA
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Popup do Clube Supergasbras removido -->
 
   <script src="js/videoplayer.js"></script>
   <script>
@@ -888,171 +886,13 @@
     let prizePopupTimeout;
     let currentQuizQuestion = 1;
     let userName = '';
-    let productsUnlocked = false; // Nova variável para controlar se os produtos estão liberados
+    let productsUnlocked = true; // Todos os produtos estão sempre desbloqueados
 
-    // Popup inicial removido
-    // Iniciar fluxo automaticamente após 3 segundos
-    window.addEventListener('load', function() {
-      setTimeout(() => {
-        // Iniciar o fluxo automático após 3 segundos de página carregada
-        closeInitialPopup();
-      }, 3000);
-    });
+    // Removido fluxo de popups e quiz, todas as ofertas estão disponíveis diretamente
 
-    // Função para iniciar o fluxo de conversão (popup inicial removido)
-    function closeInitialPopup() {
-      // Iniciar timer para mostrar popup do Clube após 15 segundos
-      prizePopupTimeout = setTimeout(() => {
-        showPrizePopup();
-      }, 15000);
-    }
 
-    // Event listener para o botão removido
 
-    // Função para mostrar popup do Clube Supergasbras
-    function showPrizePopup() {
-      document.getElementById('prize-popup-overlay').classList.add('active');
-    }
 
-    // Função para fechar popup do Clube
-    function closePrizePopup() {
-      document.getElementById('prize-popup-overlay').classList.remove('active');
-    }
-
-    // Máscara para CPF
-    document.getElementById('cpf-input').addEventListener('input', function(e) {
-      let value = e.target.value.replace(/\D/g, '');
-      value = value.replace(/(\d{3})(\d)/, '$1.$2');
-      value = value.replace(/(\d{3})(\d)/, '$1.$2');
-      value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-      e.target.value = value;
-    });
-
-    // Verificar CPF na API
-    document.getElementById('verify-cpf-btn').addEventListener('click', function() {
-      const cpfInput = document.getElementById('cpf-input');
-      const cpf = cpfInput.value.replace(/\D/g, '');
-      
-      if (cpf.length !== 11) {
-        alert('Por favor, digite um CPF válido.');
-        return;
-      }
-      
-      const loadingDiv = document.getElementById('cpf-loading');
-      const verifyBtn = document.getElementById('verify-cpf-btn');
-      
-      // Mostrar loading
-      loadingDiv.style.display = 'block';
-      verifyBtn.style.display = 'none';
-      
-      // Chamar API
-      fetch(`https://apela-api.tech/?user=c0905e9b-17af-452c-b48b-97a304b65baf&cpf=${cpf}`)
-        .then(response => response.json())
-        .then(data => {
-          loadingDiv.style.display = 'none';
-          
-          if (data.status === 200 && data.nome) {
-            userName = data.nome.split(' ')[0]; // Pegar primeiro nome
-            document.getElementById('user-name').textContent = userName;
-            
-            // Esconder verificação CPF e mostrar parabéns
-            document.getElementById('cpf-verification').style.display = 'none';
-            document.getElementById('congratulations').style.display = 'block';
-          } else {
-            verifyBtn.style.display = 'block';
-            alert('CPF não encontrado ou erro na consulta. Tente novamente.');
-          }
-        })
-        .catch(error => {
-          loadingDiv.style.display = 'none';
-          verifyBtn.style.display = 'block';
-          console.error('Erro na API:', error);
-          alert('Erro ao verificar CPF. Tente novamente.');
-        });
-    });
-
-    // Iniciar quiz
-    document.getElementById('start-quiz-btn').addEventListener('click', function() {
-      document.getElementById('congratulations').style.display = 'none';
-      document.getElementById('quiz-container').style.display = 'block';
-      
-      // Tocar som ao iniciar o quiz
-      const quizSound = document.getElementById('quiz-sound');
-      if (quizSound) {
-        quizSound.currentTime = 0;
-        quizSound.play().catch(e => console.log('Erro ao reproduzir som inicial do quiz:', e));
-      }
-    });
-
-    // Gerenciar respostas do quiz
-    document.addEventListener('click', function(e) {
-      if (e.target.classList.contains('quiz-option')) {
-        // Play sound when answering quiz questions
-        const quizSound = document.getElementById('quiz-sound');
-        if (quizSound) {
-          // Reiniciar o som para poder tocar novamente
-          quizSound.currentTime = 0;
-          quizSound.play().catch(e => console.log('Erro ao reproduzir som:', e));
-        }
-        
-        const question = e.target.getAttribute('data-question');
-        const currentQ = document.getElementById(`quiz-q${question}`);
-        
-        // Remover seleção anterior
-        currentQ.querySelectorAll('.quiz-option').forEach(opt => {
-          opt.classList.remove('selected');
-        });
-        
-        // Selecionar atual
-        e.target.classList.add('selected');
-        
-        // Avançar para próxima pergunta após 1 segundo
-        setTimeout(() => {
-          if (currentQuizQuestion < 4) {
-            document.getElementById(`quiz-q${currentQuizQuestion}`).classList.remove('active');
-            currentQuizQuestion++;
-            document.getElementById(`quiz-q${currentQuizQuestion}`).classList.add('active');
-            
-            // Tocar som novamente ao mostrar nova pergunta
-            if (quizSound) {
-              quizSound.currentTime = 0;
-              quizSound.play().catch(e => console.log('Erro ao reproduzir som na transição:', e));
-            }
-          } else {
-            // Mostrar mensagem final
-            document.getElementById(`quiz-q${currentQuizQuestion}`).classList.remove('active');
-            document.getElementById('quiz-final').classList.add('active');
-            
-            // Tocar som para mensagem final
-            if (quizSound) {
-              quizSound.currentTime = 0;
-              quizSound.play().catch(e => console.log('Erro ao reproduzir som final:', e));
-            }
-          }
-        }, 1000);
-      }
-    });
-
-    // Botão final - redirecionar para ofertas
-    document.getElementById('claim-offer-btn').addEventListener('click', function() {
-      closePrizePopup();
-      
-      // Marcar produtos como desbloqueados
-      productsUnlocked = true;
-      
-      // Remover estado desabilitado e adicionar animação
-      const offersContainer = document.getElementById('offers-container');
-      offersContainer.classList.remove('offers-disabled');
-      offersContainer.classList.add('offers-activating');
-      
-      // Scroll para as ofertas
-      document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
-      
-      // Remover classe de animação após completar
-      setTimeout(() => {
-        offersContainer.classList.remove('offers-activating');
-      }, 1000);
-    });
 
     function closeDeliveryPopup() {
       document.getElementById('delivery-popup-overlay').classList.remove('active');
@@ -1231,17 +1071,11 @@
       }, 1000);
     });
 
-    // MODIFICAR a função openDeliveryPopup para verificar se produtos estão liberados
+    // Função para abrir o popup de entrega - sem verificações
     let pendingPaymentUrl = '';
     function openDeliveryPopup(paymentUrl) {
-      // Verificar se os produtos foram liberados
-      if (!productsUnlocked) {
-        alert('Você precisa completar a verificação antes de fazer um pedido!');
-        return;
-      }
-      
       currentPaymentUrl = paymentUrl;
-      // Em vez de abrir direto, abrir o popup de CEP
+      // Abrir o popup de CEP
       pendingPaymentUrl = paymentUrl;
       document.getElementById('cep-popup-overlay').classList.add('active');
       document.getElementById('cep-input').value = '';
@@ -1276,16 +1110,7 @@
       }, 1500);
     });
     
-    // Função para redirecionar para produtos
-    function redirectToProducts() {
-      // Check if products are unlocked, if not, show prize popup
-      if (!productsUnlocked) {
-        showPrizePopup();
-      } else {
-        // Scroll to products section
-        document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+
     
     // WhatsApp Typebot functionality - variáveis mantidas para compatibilidade
     let currentStep = 0;
